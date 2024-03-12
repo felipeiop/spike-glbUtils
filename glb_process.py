@@ -9,7 +9,7 @@ def glb_process():
         current_folder = f"{char_dirs}/{i}"
         glb_files = [file for file in os.listdir(current_folder) if file.endswith(".glb")]
         for glb_file in glb_files:
-            bpy.ops.import_scene.gltf(filepath=f"{current_folder}/{glb_file}")
+            bpy.ops.import_scene.gltf(filepath=f"{current_folder}/{glb_file}",bone_heuristic="BLENDER")
             # Clear selection
             bpy.ops.object.select_all(action='DESELECT')
 
@@ -51,6 +51,9 @@ def glb_process():
         print("Export complete. Scene exported to", output_file)
         bpy.ops.wm.read_factory_settings(use_empty=True)
 
-        #break
+        #optional
+        #remove previous glb files
+        #for glb_file in glb_files:
+        #    os.remove(f"{current_folder}/{glb_file}")
 
 glb_process()
